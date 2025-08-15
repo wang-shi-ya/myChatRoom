@@ -1,0 +1,22 @@
+QT       += core gui network sql widgets
+CONFIG   += c++17
+TARGET = ChatClient
+TEMPLATE = app
+
+SOURCES += \
+    ProfileDialog.cpp \
+    main.cpp \
+    client.cpp \
+    loginwindow.cpp \
+    chatwindow.cpp
+
+HEADERS += \
+    ProfileDialog.h \
+    client.h \
+    loginwindow.h \
+    chatwindow.h
+
+FORMS += \
+    ProfileDialog.ui \
+    loginwindow.ui \
+    chatwindow.ui

@@ -191,11 +191,13 @@ void Client::updateUsername(const QString &newUsername)
     socket->write(QJsonDocument(message).toJson(QJsonDocument::Compact) + "\n");
 }
 
-void Client::updatePassword(const QString &newPassword)
+void Client::updatePassword(const QString &oldPassword, const QString &newPassword)
 {
     QJsonObject message;
     message["type"] = "update_password";
+    message["oldPassword"] = oldPassword;
     message["newPassword"] = newPassword;
     socket->write(QJsonDocument(message).toJson(QJsonDocument::Compact) + "\n");
 }
+
 

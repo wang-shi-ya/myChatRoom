@@ -25,6 +25,8 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *labelUsername;
     QLineEdit *usernameEdit;
+    QLabel *labelOldPassword;
+    QLineEdit *oldPasswordEdit;
     QLabel *labelPassword;
     QLineEdit *passwordEdit;
     QPushButton *submitButton;
@@ -33,7 +35,7 @@ public:
     {
         if (ProfileDialog->objectName().isEmpty())
             ProfileDialog->setObjectName("ProfileDialog");
-        ProfileDialog->resize(300, 200);
+        ProfileDialog->resize(300, 220);
         verticalLayout = new QVBoxLayout(ProfileDialog);
         verticalLayout->setObjectName("verticalLayout");
         labelUsername = new QLabel(ProfileDialog);
@@ -45,6 +47,17 @@ public:
         usernameEdit->setObjectName("usernameEdit");
 
         verticalLayout->addWidget(usernameEdit);
+
+        labelOldPassword = new QLabel(ProfileDialog);
+        labelOldPassword->setObjectName("labelOldPassword");
+
+        verticalLayout->addWidget(labelOldPassword);
+
+        oldPasswordEdit = new QLineEdit(ProfileDialog);
+        oldPasswordEdit->setObjectName("oldPasswordEdit");
+        oldPasswordEdit->setEchoMode(QLineEdit::Password);
+
+        verticalLayout->addWidget(oldPasswordEdit);
 
         labelPassword = new QLabel(ProfileDialog);
         labelPassword->setObjectName("labelPassword");
@@ -73,6 +86,8 @@ public:
         ProfileDialog->setWindowTitle(QCoreApplication::translate("ProfileDialog", "\344\277\256\346\224\271\350\265\204\346\226\231", nullptr));
         labelUsername->setText(QCoreApplication::translate("ProfileDialog", "\346\226\260\347\224\250\346\210\267\345\220\215\357\274\232", nullptr));
         usernameEdit->setPlaceholderText(QCoreApplication::translate("ProfileDialog", "\350\276\223\345\205\245\346\226\260\347\224\250\346\210\267\345\220\215\357\274\210\345\217\257\351\200\211\357\274\211", nullptr));
+        labelOldPassword->setText(QCoreApplication::translate("ProfileDialog", "\345\216\237\345\257\206\347\240\201\357\274\232", nullptr));
+        oldPasswordEdit->setPlaceholderText(QCoreApplication::translate("ProfileDialog", "\350\276\223\345\205\245\345\216\237\345\257\206\347\240\201", nullptr));
         labelPassword->setText(QCoreApplication::translate("ProfileDialog", "\346\226\260\345\257\206\347\240\201\357\274\232", nullptr));
         passwordEdit->setPlaceholderText(QCoreApplication::translate("ProfileDialog", "\350\276\223\345\205\245\346\226\260\345\257\206\347\240\201\357\274\210\345\217\257\351\200\211\357\274\211", nullptr));
         submitButton->setText(QCoreApplication::translate("ProfileDialog", "\346\217\220\344\272\244", nullptr));

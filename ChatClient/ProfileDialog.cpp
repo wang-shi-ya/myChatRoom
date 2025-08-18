@@ -27,6 +27,7 @@ ProfileDialog::~ProfileDialog()
 void ProfileDialog::onSubmitClicked()
 {
     QString newUsername = ui->usernameEdit->text().trimmed();
+    QString oldPassword = ui->oldPasswordEdit->text().trimmed();
     QString newPassword = ui->passwordEdit->text().trimmed();
 
     if (newUsername.isEmpty() && newPassword.isEmpty()) {
@@ -37,10 +38,16 @@ void ProfileDialog::onSubmitClicked()
     if (!newUsername.isEmpty()) {
         client->updateUsername(newUsername);
     }
+
     if (!newPassword.isEmpty()) {
-        client->updatePassword(newPassword);
+        if (oldPassword.isEmpty()) {
+            QMessageBox::warning(this, "提示", "修改密码时必须输入原密码");
+            return;
+        }
+        client->updatePassword(oldPassword, newPassword); // ⬅ 传原密码 + 新密码
     }
 }
+
 
 void ProfileDialog::onUsernameUpdated(const QString &newUsername)
 {

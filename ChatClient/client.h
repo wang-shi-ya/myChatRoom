@@ -29,7 +29,7 @@ public:
 
     //修改信息
     void updateUsername(const QString &newUsername);
-    void updatePassword(const QString &newPassword);
+    void updatePassword(const QString &oldPassword, const QString &newPassword);
     int getAccount() const { return account; }
     QString getUsername() const { return username; }
 

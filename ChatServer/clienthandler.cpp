@@ -237,9 +237,24 @@ void ClientHandler::handleUpdatePassword(const QJsonObject &message)
 {
     if (account == -1) return; // 未登录
 
+    QString oldPassword = message["oldPassword"].toString();
     QString newPassword = message["newPassword"].toString();
-    if (newPassword.isEmpty()) return;
 
+    if (oldPassword.isEmpty() || newPassword.isEmpty()) {
+        return;
+    }
+
+    // 先验证旧密码
+    if (!server->database()->login(account, oldPassword)) {
+        QJsonObject response;
+        response["type"] = "update_password_response";
+        response["success"] = false;
+        response["error"] = "原密码错误";
+        sendMessage(response);
+        return;
+    }
+
+    // 更新新密码
     if (server->database()->updatePassword(account, newPassword)) {
         QJsonObject response;
         response["type"] = "update_password_response";
@@ -249,7 +264,9 @@ void ClientHandler::handleUpdatePassword(const QJsonObject &message)
         QJsonObject response;
         response["type"] = "update_password_response";
         response["success"] = false;
+        response["error"] = "修改密码失败";
         sendMessage(response);
     }
 }
+
 

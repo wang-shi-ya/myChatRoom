@@ -7,13 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>200</height>
+    <height>220</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>修改资料</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+
+   <!-- 用户名 -->
    <item>
     <widget class="QLabel" name="labelUsername">
      <property name="text">
@@ -28,6 +30,27 @@
      </property>
     </widget>
    </item>
+
+   <!-- 原密码 -->
+   <item>
+    <widget class="QLabel" name="labelOldPassword">
+     <property name="text">
+      <string>原密码：</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="oldPasswordEdit">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+     <property name="placeholderText">
+      <string>输入原密码</string>
+     </property>
+    </widget>
+   </item>
+
+   <!-- 新密码 -->
    <item>
     <widget class="QLabel" name="labelPassword">
      <property name="text">
@@ -45,6 +68,8 @@
      </property>
     </widget>
    </item>
+
+   <!-- 提交按钮 -->
    <item>
     <widget class="QPushButton" name="submitButton">
      <property name="text">
@@ -52,6 +77,7 @@
      </property>
     </widget>
    </item>
+
   </layout>
  </widget>
  <resources/>

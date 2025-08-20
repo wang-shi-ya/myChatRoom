@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../ProfileDialog.h"
+#include "../../../../../ChatRoom-main/ChatRoom-main/ChatClient/ProfileDialog.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

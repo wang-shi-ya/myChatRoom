@@ -1,0 +1,11 @@
+release/ImageLabel.o
+release/ProfileDialog.o
+release/main.o
+release/client.o
+release/loginwindow.o
+release/chatwindow.o
+release/moc_ImageLabel.o
+release/moc_ProfileDialog.o
+release/moc_client.o
+release/moc_loginwindow.o
+release/moc_chatwindow.o

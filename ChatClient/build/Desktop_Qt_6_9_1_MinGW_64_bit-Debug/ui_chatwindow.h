@@ -24,65 +24,52 @@ QT_BEGIN_NAMESPACE
 class Ui_ChatWindow
 {
 public:
-    QHBoxLayout *horizontalLayout;
     QListWidget *onlineList;
-    QVBoxLayout *leftLayout;
-    QVBoxLayout *verticalLayout;
-    QTextBrowser *chatView;
-    QHBoxLayout *horizontalLayout_2;
-    QTextEdit *messageEdit;
     QPushButton *sendButton;
+    QTextEdit *messageEdit;
     QPushButton *editProfileButton;
+    QPushButton *sendImageButton;
+    QWidget *widget;
+    QVBoxLayout *leftLayout;
+    QTextBrowser *chatView;
+    QWidget *widget1;
+    QHBoxLayout *horizontalLayout_2;
 
     void setupUi(QWidget *ChatWindow)
     {
         if (ChatWindow->objectName().isEmpty())
             ChatWindow->setObjectName("ChatWindow");
         ChatWindow->resize(800, 600);
-        horizontalLayout = new QHBoxLayout(ChatWindow);
-        horizontalLayout->setObjectName("horizontalLayout");
         onlineList = new QListWidget(ChatWindow);
         onlineList->setObjectName("onlineList");
+        onlineList->setGeometry(QRect(6, 6, 200, 588));
         onlineList->setMaximumSize(QSize(200, 16777215));
-
-        horizontalLayout->addWidget(onlineList);
-
-        leftLayout = new QVBoxLayout();
-        leftLayout->setObjectName("leftLayout");
-
-        horizontalLayout->addLayout(leftLayout);
-
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName("verticalLayout");
-        chatView = new QTextBrowser(ChatWindow);
-        chatView->setObjectName("chatView");
-        chatView->setOpenExternalLinks(true);
-
-        verticalLayout->addWidget(chatView);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        messageEdit = new QTextEdit(ChatWindow);
-        messageEdit->setObjectName("messageEdit");
-
-        horizontalLayout_2->addWidget(messageEdit);
-
         sendButton = new QPushButton(ChatWindow);
         sendButton->setObjectName("sendButton");
-
-        horizontalLayout_2->addWidget(sendButton);
-
+        sendButton->setGeometry(QRect(660, 470, 131, 21));
+        messageEdit = new QTextEdit(ChatWindow);
+        messageEdit->setObjectName("messageEdit");
+        messageEdit->setGeometry(QRect(210, 461, 441, 131));
         editProfileButton = new QPushButton(ChatWindow);
         editProfileButton->setObjectName("editProfileButton");
-
-        horizontalLayout_2->addWidget(editProfileButton);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
-
-
-        horizontalLayout->addLayout(verticalLayout);
-
+        editProfileButton->setGeometry(QRect(660, 570, 131, 18));
+        sendImageButton = new QPushButton(ChatWindow);
+        sendImageButton->setObjectName("sendImageButton");
+        sendImageButton->setGeometry(QRect(660, 520, 131, 18));
+        widget = new QWidget(ChatWindow);
+        widget->setObjectName("widget");
+        leftLayout = new QVBoxLayout(widget);
+        leftLayout->setObjectName("leftLayout");
+        leftLayout->setContentsMargins(0, 0, 0, 0);
+        chatView = new QTextBrowser(ChatWindow);
+        chatView->setObjectName("chatView");
+        chatView->setGeometry(QRect(210, 10, 581, 441));
+        chatView->setOpenExternalLinks(true);
+        widget1 = new QWidget(ChatWindow);
+        widget1->setObjectName("widget1");
+        horizontalLayout_2 = new QHBoxLayout(widget1);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
 
         retranslateUi(ChatWindow);
 
@@ -94,6 +81,7 @@ public:
         ChatWindow->setWindowTitle(QCoreApplication::translate("ChatWindow", "chatroom", nullptr));
         sendButton->setText(QCoreApplication::translate("ChatWindow", "\345\217\221\351\200\201", nullptr));
         editProfileButton->setText(QCoreApplication::translate("ChatWindow", "\344\277\256\346\224\271\350\265\204\346\226\231", nullptr));
+        sendImageButton->setText(QCoreApplication::translate("ChatWindow", "\345\217\221\351\200\201\345\233\276\347\211\207", nullptr));
     } // retranslateUi
 
 };

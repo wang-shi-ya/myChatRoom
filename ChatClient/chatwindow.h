@@ -1,4 +1,3 @@
-// chatwindow.h
 #ifndef CHATWINDOW_H
 #define CHATWINDOW_H
 
@@ -17,31 +16,37 @@ class ChatWindow : public QWidget
 public:
     explicit ChatWindow(Client *client, QWidget *parent = nullptr);
     ~ChatWindow();
+    void appendTextMessage(const QString &sender, const QString &message, bool isOwn);
+    void appendImageMessage(const QString &sender, const QString &imagePath, bool isOwn);
 
 private slots:
     void onSendClicked();
-    //修改资料
     void onEditProfileClicked();
-    // 注意：包含 target
-    void onNewMessage(int sender, const QString &username, const QString &content, bool isImage, const QString &timestamp, int target);
+
+    // 仅用于“接收别人消息”的信号槽
+    void onNewMessage(int sender, const QString &username, const QString &content, bool isImage, const QString &timestamp);
+
     void onUserOnline(int account, const QString &username);
     void onUserOffline(int account, const QString &username);
     void onOnlineUsersReceived(const QList<QPair<int, QString>> &users);
     void onDisconnected();
 
-    // 新增：历史记录
+    // 历史记录
     void onHistoryReceived(int target, const QJsonArray &messages);
 
-    // 新增：切换会话目标
+    // 切换会话目标
     void onTargetChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void showImageDialog(const QString &base64);
 
 private:
     Ui::ChatWindow *ui;
     Client *client;
-
+    QLineEdit *inputEdit;     // 输入框
     int currentTargetAccount = 0; // 0=群聊；否则=选中的私聊账号
 
     void appendMessage(const QString &username, const QString &message, const QString &timestamp, bool isSelf = false);
+    void appendImageMessage(const QString &username, const QString &base64, const QString &timestamp, bool isSelf = false);
     void appendSystemMessage(const QString &message);
 
     int parseAccountFromItem(QListWidgetItem *item) const;

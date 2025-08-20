@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../client.h"
+#include "../../../../../ChatRoom-main/ChatRoom-main/ChatClient/client.h"
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>
 

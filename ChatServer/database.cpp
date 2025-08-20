@@ -1,4 +1,3 @@
-// database.cpp
 #include "database.h"
 
 Database::Database(QObject *parent) : QObject(parent)
@@ -11,8 +10,8 @@ Database::Database(QObject *parent) : QObject(parent)
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("localhost");
     db.setDatabaseName("chatroom");
-    db.setUserName("root");           // TODO: 替换为你的账号
-    db.setPassword("HBsc75820306@");  // TODO: 替换为你的密码
+    db.setUserName("root");
+    db.setPassword("HBsc75820306@");
 }
 
 Database::~Database()
@@ -71,11 +70,9 @@ QString Database::getUsername(int account)
 
 bool Database::isUserOnline(int /*account*/)
 {
-    // 需要的话可扩展在线状态记录
     return false;
 }
 
-// ---------- 新增：消息存取 ----------
 bool Database::saveMessage(int sender, int target, const QString &content, bool isImage)
 {
     QSqlQuery query;
@@ -97,18 +94,25 @@ QJsonArray Database::getHistoryFor(int requester, int target, int limit)
     QJsonArray arr;
     QSqlQuery query;
     if (target == 0) {
-        // 群聊
-        query.prepare("SELECT sender, target, content, isImage, timestamp "
-                      "FROM messages WHERE target = 0 "
-                      "ORDER BY id DESC LIMIT :limit");
+        // 群聊：JOIN user 取 username
+        query.prepare(
+            "SELECT m.sender, m.target, m.content, m.isImage, m.timestamp, u.username "
+            "FROM messages m "
+            "JOIN user u ON m.sender = u.account "
+            "WHERE m.target = 0 "
+            "ORDER BY m.id DESC LIMIT :limit"
+            );
         query.bindValue(":limit", limit);
     } else {
-        // 私聊：requester 与 target 双向
-        query.prepare("SELECT sender, target, content, isImage, timestamp "
-                      "FROM messages "
-                      "WHERE (sender = :req AND target = :tar) "
-                      "   OR (sender = :tar AND target = :req) "
-                      "ORDER BY id DESC LIMIT :limit");
+        // 私聊：双向 + JOIN user
+        query.prepare(
+            "SELECT m.sender, m.target, m.content, m.isImage, m.timestamp, u.username "
+            "FROM messages m "
+            "JOIN user u ON m.sender = u.account "
+            "WHERE (m.sender = :req AND m.target = :tar) "
+            "   OR (m.sender = :tar AND m.target = :req) "
+            "ORDER BY m.id DESC LIMIT :limit"
+            );
         query.bindValue(":req", requester);
         query.bindValue(":tar", target);
         query.bindValue(":limit", limit);
@@ -122,6 +126,7 @@ QJsonArray Database::getHistoryFor(int requester, int target, int limit)
             obj["content"]   = query.value(2).toString();
             obj["isImage"]   = query.value(3).toBool();
             obj["timestamp"] = query.value(4).toString();
+            obj["username"]  = query.value(5).toString();
             arr.append(obj);
         }
     } else {
@@ -129,8 +134,7 @@ QJsonArray Database::getHistoryFor(int requester, int target, int limit)
     }
     return arr;
 }
-//修改信息
-// database.cpp
+
 bool Database::updateUsername(int account, const QString &newUsername)
 {
     QSqlQuery query;
@@ -158,4 +162,3 @@ bool Database::updatePassword(int account, const QString &newPassword)
     }
     return true;
 }
-

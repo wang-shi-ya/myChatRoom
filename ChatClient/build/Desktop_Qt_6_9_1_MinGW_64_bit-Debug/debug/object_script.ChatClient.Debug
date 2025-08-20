@@ -1,0 +1,11 @@
+debug/ImageLabel.o
+debug/ProfileDialog.o
+debug/main.o
+debug/client.o
+debug/loginwindow.o
+debug/chatwindow.o
+debug/moc_ImageLabel.o
+debug/moc_ProfileDialog.o
+debug/moc_client.o
+debug/moc_loginwindow.o
+debug/moc_chatwindow.o

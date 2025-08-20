@@ -160,7 +160,7 @@ void ClientHandler::handleChatMessage(const QJsonObject &message)
     const QString content = message["content"].toString();
     const bool isImage = message["isImage"].toBool();
     const int target = message["target"].toInt(); // 0=群聊, 否则=对方账号
-
+    const QString filename = message["filename"].toString();
     // 先入库
     //qDebug() << "DEBUG saveMessage:" << account << target << content << isImage;
     server->database()->saveMessage(account, target, content, isImage);//历史消息存入

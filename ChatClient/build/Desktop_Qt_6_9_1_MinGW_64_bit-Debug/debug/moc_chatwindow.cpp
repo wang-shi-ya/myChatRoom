@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../chatwindow.h"
+#include "../../../../../ChatRoom-main/ChatRoom-main/ChatClient/chatwindow.h"
 #include <QtCore/qmetatype.h>
 #include <QtCore/QList>
 
@@ -43,6 +43,7 @@ template <> constexpr inline auto ChatWindow::qt_create_metaobjectdata<qt_meta_t
         "onSendClicked",
         "",
         "onEditProfileClicked",
+        "onSendImageClicked",
         "onNewMessage",
         "sender",
         "username",
@@ -70,32 +71,34 @@ template <> constexpr inline auto ChatWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onEditProfileClicked'
         QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSendImageClicked'
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onNewMessage'
-        QtMocHelpers::SlotData<void(int, const QString &, const QString &, bool, const QString &, int)>(4, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 5 }, { QMetaType::QString, 6 }, { QMetaType::QString, 7 }, { QMetaType::Bool, 8 },
-            { QMetaType::QString, 9 }, { QMetaType::Int, 10 },
+        QtMocHelpers::SlotData<void(int, const QString &, const QString &, bool, const QString &, int)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 6 }, { QMetaType::QString, 7 }, { QMetaType::QString, 8 }, { QMetaType::Bool, 9 },
+            { QMetaType::QString, 10 }, { QMetaType::Int, 11 },
         }}),
         // Slot 'onUserOnline'
-        QtMocHelpers::SlotData<void(int, const QString &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 12 }, { QMetaType::QString, 6 },
+        QtMocHelpers::SlotData<void(int, const QString &)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 13 }, { QMetaType::QString, 7 },
         }}),
         // Slot 'onUserOffline'
-        QtMocHelpers::SlotData<void(int, const QString &)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 12 }, { QMetaType::QString, 6 },
+        QtMocHelpers::SlotData<void(int, const QString &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 13 }, { QMetaType::QString, 7 },
         }}),
         // Slot 'onOnlineUsersReceived'
-        QtMocHelpers::SlotData<void(const QList<QPair<int,QString>> &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 15, 16 },
+        QtMocHelpers::SlotData<void(const QList<QPair<int,QString>> &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 16, 17 },
         }}),
         // Slot 'onDisconnected'
-        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onHistoryReceived'
-        QtMocHelpers::SlotData<void(int, const QJsonArray &)>(18, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 10 }, { QMetaType::QJsonArray, 19 },
+        QtMocHelpers::SlotData<void(int, const QJsonArray &)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 11 }, { QMetaType::QJsonArray, 20 },
         }}),
         // Slot 'onTargetChanged'
-        QtMocHelpers::SlotData<void(QListWidgetItem *, QListWidgetItem *)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 21, 22 }, { 0x80000000 | 21, 23 },
+        QtMocHelpers::SlotData<void(QListWidgetItem *, QListWidgetItem *)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 22, 23 }, { 0x80000000 | 22, 24 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -122,13 +125,14 @@ void ChatWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->onSendClicked(); break;
         case 1: _t->onEditProfileClicked(); break;
-        case 2: _t->onNewMessage((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6]))); break;
-        case 3: _t->onUserOnline((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 4: _t->onUserOffline((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 5: _t->onOnlineUsersReceived((*reinterpret_cast< std::add_pointer_t<QList<std::pair<int,QString>>>>(_a[1]))); break;
-        case 6: _t->onDisconnected(); break;
-        case 7: _t->onHistoryReceived((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJsonArray>>(_a[2]))); break;
-        case 8: _t->onTargetChanged((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[2]))); break;
+        case 2: _t->onSendImageClicked(); break;
+        case 3: _t->onNewMessage((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[6]))); break;
+        case 4: _t->onUserOnline((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 5: _t->onUserOffline((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 6: _t->onOnlineUsersReceived((*reinterpret_cast< std::add_pointer_t<QList<std::pair<int,QString>>>>(_a[1]))); break;
+        case 7: _t->onDisconnected(); break;
+        case 8: _t->onHistoryReceived((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QJsonArray>>(_a[2]))); break;
+        case 9: _t->onTargetChanged((*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QListWidgetItem*>>(_a[2]))); break;
         default: ;
         }
     }
@@ -153,14 +157,14 @@ int ChatWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 10;
     }
     return _id;
 }

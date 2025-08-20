@@ -4,6 +4,7 @@ TARGET = ChatClient
 TEMPLATE = app
 
 SOURCES += \
+    ImageLabel.cpp \
     ProfileDialog.cpp \
     main.cpp \
     client.cpp \
@@ -11,6 +12,7 @@ SOURCES += \
     chatwindow.cpp
 
 HEADERS += \
+    ImageLabel.h \
     ProfileDialog.h \
     client.h \
     loginwindow.h \

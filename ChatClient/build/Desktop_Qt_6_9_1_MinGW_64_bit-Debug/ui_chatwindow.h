@@ -29,11 +29,12 @@ public:
     QTextEdit *messageEdit;
     QPushButton *editProfileButton;
     QPushButton *sendImageButton;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *leftLayout;
     QTextBrowser *chatView;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
+    QTextBrowser *vedioView;
 
     void setupUi(QWidget *ChatWindow)
     {
@@ -52,24 +53,30 @@ public:
         messageEdit->setGeometry(QRect(210, 461, 441, 131));
         editProfileButton = new QPushButton(ChatWindow);
         editProfileButton->setObjectName("editProfileButton");
-        editProfileButton->setGeometry(QRect(660, 570, 131, 18));
+        editProfileButton->setGeometry(QRect(660, 567, 131, 21));
         sendImageButton = new QPushButton(ChatWindow);
         sendImageButton->setObjectName("sendImageButton");
-        sendImageButton->setGeometry(QRect(660, 520, 131, 18));
-        widget = new QWidget(ChatWindow);
-        widget->setObjectName("widget");
-        leftLayout = new QVBoxLayout(widget);
+        sendImageButton->setGeometry(QRect(660, 517, 131, 21));
+        layoutWidget = new QWidget(ChatWindow);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(0, 0, 2, 2));
+        leftLayout = new QVBoxLayout(layoutWidget);
         leftLayout->setObjectName("leftLayout");
         leftLayout->setContentsMargins(0, 0, 0, 0);
         chatView = new QTextBrowser(ChatWindow);
         chatView->setObjectName("chatView");
-        chatView->setGeometry(QRect(210, 10, 581, 441));
+        chatView->setGeometry(QRect(210, 10, 441, 441));
         chatView->setOpenExternalLinks(true);
-        widget1 = new QWidget(ChatWindow);
-        widget1->setObjectName("widget1");
-        horizontalLayout_2 = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(ChatWindow);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(0, 0, 2, 2));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        vedioView = new QTextBrowser(ChatWindow);
+        vedioView->setObjectName("vedioView");
+        vedioView->setGeometry(QRect(660, 10, 131, 441));
+        vedioView->setOpenExternalLinks(true);
 
         retranslateUi(ChatWindow);
 
